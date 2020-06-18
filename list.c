@@ -99,7 +99,7 @@ Item removeListItem(List list, Item item){
 }
 
 Item removeListItemPos(List list, int pos){
-    if(pos<0 || pos >= list->size);
+    if(pos<0 || pos >= list->size)
         return NULL;
     if(pos==0)
         return removeHead(list);
@@ -163,7 +163,7 @@ List cloneList(List list){
     while(n){
         *ptr_n_new = n;
         n = n->next;
-        *ptr_n_new = (*ptr_n_new)->next;
+        ptr_n_new = &(*ptr_n_new)->next;
     }
     return new_list;
 }
