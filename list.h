@@ -1,6 +1,6 @@
 #include "item.h"
 
-typedef struct list *List;
+typedef struct list* List;
 
 List newList();
 int isEmpty(List);
