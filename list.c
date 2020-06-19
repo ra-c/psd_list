@@ -144,14 +144,18 @@ int addListTail(List list, Item item){
 void reverseList(List list){
     if(!list->head)
         return;
-    Node head = list->head;
-    Node n = head->next;
-    Node tmp;
+    Node head  = list->head;
+    Node pre_n = list->head;
+    Node     n = list->head->next;
     while(n){
-        tmp =  n->next;
+        /* Nota:
+         *      pre_n punta sempre allo stesso elemento
+         *      head viene riposizionato sempre a indice 0
+         *      n punterà sempre all'elemento successivo a pre_n */
+        pre_n->next = n->next;
         n->next = head;
-        n = tmp;
         head = n;
+        n = pre_n->next;
     }
     list->head = head;
 }
