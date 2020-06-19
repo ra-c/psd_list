@@ -171,3 +171,37 @@ List cloneList(List list){
     }
     return new_list;
 }
+
+void freeList(List list){
+    if(!list) return;
+    while(!isEmpty(list))
+        removeHead(list);
+    free(list);
+}
+
+void swap(Item *a, Item *b){
+    Item temp = *b;
+    *b = *a;
+    *a = temp;
+}
+
+Item minimo(Node head){
+    if(!head)
+        return NULL;
+    Node n = head;
+    Item min = n->item;
+    while(n){
+        if(cmpItem(n->item, min) < 0)
+            min = n->item;
+        n = n->next;
+    }
+    return min;
+}
+
+void selectionSort(List list){
+    Node n = list->head;
+    while(n){
+        swap(n->item, minimo(n));
+        n = n->next;
+    }
+}

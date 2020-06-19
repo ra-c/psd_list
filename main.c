@@ -12,8 +12,8 @@ int main(){
            "\t7. addListItem\n"
            "\t8. addListTail\n"
            "\t9. reverseList\n"
-           "\t0. cloneList\n");
-
+           "\t0. cloneList\n"
+           "\t-1. selectionSort\n");
     while(1){
         if(!isEmpty(list))
             printf("\tElementi in lista: %d\n",sizeList(list));
@@ -89,6 +89,11 @@ int main(){
         case 0:
         {
             list = cloneList(list);
+            break;
+        }
+        case -1:
+        {
+            selectionSort(list);
             break;
         }
         }

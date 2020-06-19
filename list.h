@@ -17,3 +17,5 @@ int addListItem (List, Item, int);
 int addListTail (List, Item);
 void reverseList(List);
 List cloneList (List);
+void freeList(List);
+void selectionSort(List);
