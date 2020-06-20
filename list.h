@@ -19,3 +19,4 @@ void reverseList(List);
 List cloneList (List);
 void freeList(List);
 void selectionSort(List);
+void insertionSort(List);

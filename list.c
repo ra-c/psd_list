@@ -205,3 +205,42 @@ void selectionSort(List list){
         n = n->next;
     }
 }
+
+void insertSorted(List list, Node unsorted){
+    /* Nota: in questa funzione si suppone che il nodo unsorted non abbia nessun nodo precedente */
+    if(!unsorted || !list)
+        return;
+    /* Lista vuota */
+    if(!list->head){
+        list->head = unsorted;
+        unsorted->next = NULL;
+        return;
+    }
+    /* Caso speciale: l'elemento unsorted viene posizionato al primo posto nella lista ordinata */
+    if(cmpItem(unsorted->item, list->head->item)<0){
+        unsorted->next = list->head;
+        list->head = unsorted;
+        return;
+    }
+    /* Caso comune */
+    Node n = list->head;
+    while(n->next && cmpItem(unsorted->item,n->next->item)>0)
+        n = n->next;
+    unsorted->next = n->next; /* n->next è il primo elemento maggiore di unsorted */
+    n->next = unsorted;
+    return;
+}
+
+void insertionSort(List list){
+    if(!list->head || !list->head->next)
+        return;
+    /* Spezzo la lista in due liste: lista ordinata e lista non ordinata */
+    Node n = list->head->next; 
+    list->head->next = NULL;
+
+    while(n){
+        Node tmp = n;
+        n = n->next;
+        insertSorted(list, tmp);
+    }
+}
