@@ -108,6 +108,11 @@ int main(){
             bubbleSort(list);
             break;
         }
+        case -4:
+        {
+            mergeSort(list);
+            break;
+        }
         }
     }
 

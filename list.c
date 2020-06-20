@@ -260,17 +260,55 @@ void bubbleSort(List list){
     }
 }
 
-Node getNodePos(List list, int pos){
-    Node n = list->head;
-    int i = 0;
-    while(n && i<pos){
-        n = n->next;
-        i++;
+Node getMiddleNode(Node head){
+    Node fast = head;
+    Node slow = head;
+
+    while(fast && fast->next){
+        slow = slow->next;
+        fast = fast->next->next;
     }
+    return slow;
 }
 
-void mergeSort(List list, int n){
-    if(n>1){
-        
+Node splitList(Node head){
+    Node middle = getMiddleNode(head);
+    Node half = middle->next;
+    middle->next = NULL;
+    return half;
+}
+
+void merge(Node a, Node b, Node out){
+    /* Non voglio appesantire il codice quindi uso un dummy node come head di out */
+    /* Altrimenti avrei dovuto fare Node* out */
+    while(a && b){
+        if(cmpItem(a->item, b->item)<=0){
+            out->next = a;
+            a = a->next;
+        } else {
+            out->next = b;
+            b = b->next;
+        }
+        out = out->next;
     }
+    if(a)
+        out->next = a;
+    if(b)
+        out->next = b;
+}
+
+void mergeSort_r(Node* head){
+    if (!head || !*head || !(*head)->next)
+        return;
+    Node half = splitList(*head); //seconda metà
+    mergeSort_r(head);
+    mergeSort_r(&half);
+    /* Dummy node */
+    Node dummy = createNode(NULL, NULL);
+    merge(*head, half, dummy);
+    *head = dummy->next;
+}
+
+void mergeSort(List list){
+    mergeSort_r(&(list->head));
 }

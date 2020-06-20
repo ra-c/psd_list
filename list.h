@@ -21,3 +21,4 @@ void freeList(List);
 void selectionSort(List);
 void insertionSort(List);
 void bubbleSort(List);
+void mergeSort(List);
