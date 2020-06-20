@@ -163,6 +163,7 @@ void reverseList(List list){
 List cloneList(List list){
     List new_list = newList();
     Node n = list->head;
+    new_list->size = list->size;
     Node* ptr_n_new = &(new_list->head);
     while(n){
         *ptr_n_new = n;
@@ -242,5 +243,34 @@ void insertionSort(List list){
         Node tmp = n;
         n = n->next;
         insertSorted(list, tmp);
+    }
+}
+void bubbleSort(List list){
+    int sorted = 0;
+    while(!sorted){
+        Node n = list->head;
+        sorted = 1;
+        while(n && n->next){
+            if(cmpItem(n->item, n->next->item)>0){
+                swap(n->item, n->next->item);
+                sorted = 0;
+            }
+            n = n->next;
+        }
+    }
+}
+
+Node getNodePos(List list, int pos){
+    Node n = list->head;
+    int i = 0;
+    while(n && i<pos){
+        n = n->next;
+        i++;
+    }
+}
+
+void mergeSort(List list, int n){
+    if(n>1){
+        
     }
 }

@@ -14,7 +14,8 @@ int main(){
            "\t9. reverseList\n"
            "\t0. cloneList\n"
            "\t-1. selectionSort\n"
-           "\t-2. insertionSort\n");
+           "\t-2. insertionSort\n"
+           "\t-2. bubbleSort\n");
     while(1){
         if(!isEmpty(list))
             printf("\tElementi in lista: %d\n",sizeList(list));
@@ -100,6 +101,11 @@ int main(){
         case -2:
         {
             insertionSort(list);
+            break;
+        }
+        case -3:
+        {
+            bubbleSort(list);
             break;
         }
         }
